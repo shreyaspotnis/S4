@@ -15,7 +15,7 @@ import numpy as np
 #os.environ["CXX"] = "g++"
 
 libs = ['S4', 'stdc++']
-lib_dirs = ['$OBJDIR', '$BOOST_PREFIX/lib']
+lib_dirs = ['$OBJDIR', '$BOOST_PREFIX/lib', '/var/task/SuiteSparse/lib', '/var/task/fftw-3.3.8/install/lib']
 libs.extend([lib[2::] for lib in '$LIBS'.split()])
 include_dirs = ['$BOOST_PREFIX/include', np.get_include()]
 extra_link_args = ['$LIBFILE']
