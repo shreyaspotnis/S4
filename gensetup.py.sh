@@ -8,6 +8,7 @@ BOOST_PREFIX="$4"
 echo "LIBFILE: $LIBFILE"
 
 cat <<SETUPPY > setup.py
+import setuptools
 from distutils.core import setup, Extension
 import numpy as np
 #import os
@@ -28,7 +29,7 @@ S4module = Extension('S4',
     extra_objects = ['$LIBFILE'],
 	# extra_link_args = extra_link_args,
     runtime_library_dirs=['$BOOST_PREFIX/lib'],
-	extra_compile_args=['-std=gnu99'] 
+	extra_compile_args=['-std=gnu99']
 )
 
 setup(name = 'S4',
