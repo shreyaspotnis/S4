@@ -670,8 +670,8 @@ static PyObject *S4Sim_LoadSolution(S4Sim *self, PyObject *args, PyObject *kwds)
 	const char *fname;
 	if(!PyArg_ParseTupleAndKeywords(args, kwds, "s:LoadSolution", kwlist, &fname)){ return NULL; }
     //printf"Parsed args!\n");
-    int err;
-    err = Simulation_LoadSolution(&(self->S), fname);
+    // int err;
+    // err = Simulation_LoadSolution(&(self->S), fname);
     // if (err != 0){
     //     HandleSolutionErrorCode("Simulation_LoadSolution", err);
     // }
@@ -683,10 +683,10 @@ static PyObject *S4Sim_SaveSolution(S4Sim *self, PyObject *args, PyObject *kwds)
 	const char *fname;
 	if(!PyArg_ParseTupleAndKeywords(args, kwds, "s:SaveSolution", kwlist, &fname)){ return NULL; }
     int err;
-    err = Simulation_SaveSolution(&(self->S), fname);
-    if (err != 0){
-        HandleSolutionErrorCode("Simulation_SaveSolution", err);
-    }
+    // err = Simulation_SaveSolution(&(self->S), fname);
+    // if (err != 0){
+    //     HandleSolutionErrorCode("Simulation_SaveSolution", err);
+    // }
 	Py_RETURN_NONE;
 }
 
@@ -1203,9 +1203,9 @@ static PyObject *S4Sim_GetPropagationConstants(S4Sim *self, PyObject *args, PyOb
 		return NULL;
 	}
 	n = Simulation_GetNumG(&(self->S), &G);
-    int n2 = 2*n; 
+    int n2 = 2*n;
     // q vector in S4 contains 2*n complex doubles, meaning we need a memory
-    // space that can accomodate 4*n doubles 
+    // space that can accomodate 4*n doubles
 	q = (double*)malloc(sizeof(double)*2*n2);
 	ret = Simulation_GetPropagationConstants(&(self->S), layer, q);
 	if(0 != ret){
@@ -1476,12 +1476,12 @@ static PyObject *S4Sim_GetFieldsOnGridNumpy(S4Sim *self, PyObject *args, PyObjec
   /* PyArray_Descr* desc = PyArray_DescrFromType(NPY_COMPLEX128); */
   Earr = PyArray_SimpleNewFromData(3, dims, NPY_COMPLEX128, Efields);
   /* PyArray_Dims new_dims; */
-  /* npy_intp tmp[3] = {1, 0, 2}; */ 
+  /* npy_intp tmp[3] = {1, 0, 2}; */
   /* new_dims.ptr = tmp; */
   /* new_dims.len = 3; */
   /* Earr = PyArray_Transpose(Earr, &new_dims); */
   /* npy_intp *strides = PyArray_STRIDES(Earr); */
-  /* npy_intp temp; */ 
+  /* npy_intp temp; */
   /* temp = strides[0]; */
   /* strides[0] = strides[1]; */
   /* strides[1] = temp; */
@@ -1509,7 +1509,7 @@ static PyObject *S4Sim_GetFieldsOnGridNumpy(S4Sim *self, PyObject *args, PyObjec
   /* if (!(EHfields = PyArray_Zeros(4, &dims, desc, 0))) { */
   /*   goto fail; */
   /* } */
-  
+
   /* return EHfields; */
   /* return Py_BuildValue("(OO)", Earr, Harr); */
   return Py_BuildValue("(NN)", Earr, Harr);
